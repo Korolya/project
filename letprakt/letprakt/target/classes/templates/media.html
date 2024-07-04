@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Media Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Upload and View Media</h1>
+<h2>Upload New File</h2>
+<form th:action="@{/media/upload}" method="post" enctype="multipart/form-data">
+    <label>File:</label>
+    <input type="file" name="file" required/><br/>
+    <button type="submit">Upload</button>
+</form>
+
+<div th:if="${error}">
+    <p th:text="${error}" style="color: red;"></p>
+</div>
+
+<h2>Existing Files</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>File Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mediaFile : ${mediaFiles}">
+        <td th:text="${mediaFile.id}"></td>
+        <td th:text="${mediaFile.fileName}"></td>
+        <td>
+            <a th:href="@{/media/download/{id}(id=${mediaFile.id})}">Download</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/home}">Back to Home</a>
+</body>
+</html>

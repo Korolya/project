@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Edit Profile</h1>
+<form th:action="@{/editProfile}" th:object="${user}" method="post">
+    <div>
+        <label>Username:</label>
+        <input type="text" th:field="*{username}" />
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Имя пользователя обязательно</div>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" th:field="*{password}" />
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Пароль обязателен</div>
+    </div>
+    <div>
+        <label>Confirm password:</label>
+        <input type="password" name="confirmPassword" th:value="${user.confirmPassword}" />
+    </div>
+    <div th:if="${error}">
+        <p th:text="${error}"></p>
+    </div>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+    <a th:href="@{/home}">Home</a>
+</form>
+</body>
+</html>

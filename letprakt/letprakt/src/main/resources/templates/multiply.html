@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiply Number</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Multiply Number</h1>
+    <form action="/showDetails" method="get">
+        <label for="num">Enter a number:</label>
+        <input type="text" id="num" name="number" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result" th:text="${result}"></div>
+    <div id="error" th:text="${error}"></div>
+</div>
+</body>
+</html>
+
+
